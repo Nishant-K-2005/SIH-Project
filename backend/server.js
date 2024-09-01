@@ -5,10 +5,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 
+
 mongoose.connect(process.env.URI)
     .then(() => {
         console.log("Connected Succesfully");
-        app.listen(process.env.PORT || 8000, (err) => { 
+        app.listen(process.env.PORT || 8000, (err) => {
             if (err) throw err;
             console.log("Server is running at", process.env.PORT);
         });
@@ -22,4 +23,10 @@ mongoose.connect(process.env.URI)
 app.get("/", (req, res) => {
     res.send("api running test");
 });
+
+
+
+
+
+
 
