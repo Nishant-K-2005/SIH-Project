@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const registerSchema = new mongoose.Schema({
     rollno : {
-        type: Number,
+        type: String,
         required: true
     },
     motherName : {
@@ -18,7 +18,7 @@ const registerSchema = new mongoose.Schema({
         required: true
     },
     yearofpassing : {
-        type : Number,
+        type : String,
         required: true
     },
     board : {
