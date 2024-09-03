@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 const User = require("./models/registerModel");
+const userInfo = require('./models/userModel');
+const familyInfo = require('./models/familyModel');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
@@ -36,7 +38,7 @@ mongoose.connect(process.env.URI)
 const SECRET_KEY = crypto.randomBytes(64).toString('hex');
 
 app.post("/register", async (req, res) => {
-    const { rollno, yearofpassing, board, aadharcard, familyincome, isDomicile, mobile, email, password } = req.body;
+    const { rollno, motherName, cndtName, fatherName, yearofpassing, board, aadharcard, familyincome, isDomicile,cuet, cuetNum, neet, neetNum, jee, jeeNum, mobile, email, password } = req.body;
     let user = await User.findOne({ email });
     if (user) {
         return res.status(400).json({ message: "User already exists" });
@@ -50,18 +52,27 @@ app.post("/register", async (req, res) => {
         // Create and save the new user
         await User.create({
             rollno,
+            motherName,
+            cndtName,
+            fatherName,
             yearofpassing,
             board,
             aadharcard,
             familyincome,
             isDomicile,
+            cuet,
+            cuetNum,
+            neet,
+            neetNum,
+            jee,
+            jeeNum,
             mobile,
             email,
             password: hash,  // Store the hashed password
         }); 
-        res.status(201).json({ message: "User registered",user: token});
+        res.status(201).json({ message: "User registered"});
     } catch (error) {
-        return res.status(400).json({ message: error.message });
+        return res.status(400).json({ message: error.message});
     }
 });
 
@@ -89,12 +100,13 @@ app.post("/login", async (req, res) => {
         );
 
         // // Optionally, you can set the token in a cookie
-        // res.cookie('token', token, { httpOnly: true });
+        res.cookie('token', token, { httpOnly: true });
 
-        res.status(200).json({ message: "ok", user: user });
+        res.status(200).json({ message: "ok", user: user, token: token });
     } else {
         res.status(400).json({ message: "Invalid credentials" });
     }
 });
+
 
 

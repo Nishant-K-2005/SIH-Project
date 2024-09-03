@@ -5,6 +5,18 @@ const registerSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    motherName : {
+        type: String,
+        required: true
+    },
+    cndtName : {
+        type: String,
+        required: true
+    },
+    fatherName : {
+        type: String,
+        required: true
+    },
     yearofpassing : {
         type : Number,
         required: true
@@ -24,6 +36,24 @@ const registerSchema = new mongoose.Schema({
     isDomicile : {
         type: Boolean,
         required: true
+    },
+    cuet : {
+        type: String
+    },
+    cuetNum : {
+        type: String
+    },
+    neet : {
+        type: String
+    },
+    neetNum : {
+        type: String
+    },
+    jee : {
+        type: String
+    },
+    jeeNum : {
+        type: String
     },
     mobile : {
         type: String,
