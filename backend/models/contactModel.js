@@ -12,26 +12,22 @@ const contactSchema = new mongoose.Schema({
         unique: true
     },
     alternateEmailAddress: { type: String },
-    permanentAddress: {
-        houseNo: { type: String },
-        street: { type: String },
-        villageTehsilBlock: { type: String },
-        addressLine: { type: String, required: true },
-        state: { type: String, required: true },
-        district: { type: String, required: true },
-        city: { type: String, required: true },
-        pinCode: { type: String, required: true }
-    },
-    currentAddress: {
-        houseNo: { type: String },
-        street: { type: String },
-        villageTehsilBlock: { type: String },
-        addressLine: { type: String },
-        state: { type: String },
-        district: { type: String },
-        city: { type: String },
-        pinCode: { type: String }
-    }
+        p_houseNo: { type: String },
+        p_street: { type: String },
+        p_villageTehsilBlock: { type: String },
+        p_addressLine: { type: String, required: true },
+        p_state: { type: String, required: true },
+        p_district: { type: String, required: true },
+        p_city: { type: String, required: true },
+        p_pinCode: { type: String, required: true },
+        c_houseNo: { type: String },
+        c_street: { type: String },
+        c_villageTehsilBlock: { type: String },
+        c_addressLine: { type: String },
+        c_state: { type: String },
+        c_district: { type: String },
+        c_city: { type: String },
+        c_pinCode: { type: String }
 });
 
 module.exports = mongoose.model('contact', contactSchema);

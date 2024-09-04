@@ -112,7 +112,7 @@ app.post("/login", async (req, res) => {
         // Optionally, you can set the token in a cookie
         res.cookie('token', token, { httpOnly: true });
 
-        res.status(200).json({ message: "ok", user: user, token: token });
+        res.status(200).json({ message: "ok", user: user});
     } else {
         res.status(400).json({ message: "Invalid credentials" });
     }
@@ -167,63 +167,53 @@ app.post('/user/familyInfo', isLoggedIn, async (req, res) => {
 app.post('/user/addressInfo', isLoggedIn, async function (req, res) {
 
     let user = await User.findOne({ email: req.user.email });
-    const { alternateMobileNumber, alternateEmailAddress, } = req.body;
-    {
-        const {
-            houseNo,
-            street,
-            villageTehsilBlock,
-            addressLine,
-            state,
-            district,
-            city,
-            pinCode
-        } = req.body.permanentAddress;
-    }
-    {
-        const {
-            houseNo,
-            street,
-            villageTehsilBlock,
-            addressLine,
-            state,
-            district,
-            city,
-            pinCode
-        } = req.body.currentAddress;
-    }
+    const { alternateMobileNumber, 
+        alternateEmailAddress,
+        p_houseNo,
+        p_street,
+        p_villageTehsilBlock,
+        p_addressLine,
+        p_state,
+        p_district,
+        p_city,
+        p_pinCode,
+        c_houseNo,
+        c_street,
+        c_villageTehsilBlock,
+        c_addressLine,
+        c_state,
+        c_district,
+        c_city,
+        c_pinCode } = req.body;
+
 
     try {
         let address = await addressInfo.create({
             user: user._id,
             mobileNumber: user.mobile,
             alternateMobileNumber,
-            email: user.email,
+            emailAddress: user.email,
             alternateEmailAddress,
-            permanentAddress: {
-                houseNo,
-                street,
-                villageTehsilBlock,
-                addressLine,
-                state,
-                district,
-                city,
-                pinCode
-            },
-            currentAddress: {
-                houseNo,
-                street,
-                villageTehsilBlock,
-                addressLine,
-                state,
-                district,
-                city,
-                pinCode
-            }
+                p_houseNo,
+                p_street,
+                p_villageTehsilBlock,
+                p_addressLine,
+                p_state,
+                p_district,
+                p_city,
+                p_pinCode,
+                c_houseNo,
+                c_street,
+                c_villageTehsilBlock,
+                c_addressLine,
+                c_state,
+                c_district,
+                c_city,
+                c_pinCode
         });
         res.status(201).json({ message: "Address Information saved", address: address });
     } catch (error) {
-        res.status(500).json({ message: error.message, number: houseNo });
+        res.status(500).json({ message: error.message});
     }
 
 });
