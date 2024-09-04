@@ -1,72 +1,74 @@
 const mongoose = require('mongoose');
 
 const registerSchema = new mongoose.Schema({
-    rollno : {
+    rollno: {
         type: Number,
         required: true
     },
-    motherName : {
+    motherName: {
         type: String,
         required: true
     },
-    cndtName : {
+    cndtName: {
         type: String,
         required: true
     },
-    fatherName : {
+    fatherName: {
         type: String,
         required: true
     },
-    yearofpassing : {
-        type : Number,
+    yearofpassing: {
+        type: Number,
         required: true
     },
-    board : {
+    board: {
         type: String,
         required: true
     },
-    aadharcard : {
+    aadharcard: {
         type: String,
         required: true
     },
-    familyincome : {
+    familyincome: {
         type: String,
         required: true
     },
-    isDomicile : {
+    isDomicile: {
         type: Boolean,
         required: true
     },
-    cuet : {
+    cuet: {
+        type: Boolean,
+    },
+    cuetNum: {
         type: String
     },
-    cuetNum : {
+    neet: {
+        type: Boolean,
+    },
+    neetNum: {
         type: String
     },
-    neet : {
+    jee: {
+        type: Boolean,
+    },
+    jeeNum: {
         type: String
     },
-    neetNum : {
-        type: String
-    },
-    jee : {
-        type: String
-    },
-    jeeNum : {
-        type: String
-    },
-    mobile : {
+    mobile: {
         type: String,
         required: true
     },
-    email : {
+    email: {
         type: String,
         required: true
     },
-    password : {
+    password: {
         type: String,
         required: true
-    }
+    },
+    resetToken: { type: String },
+    resetTokenExpiry: { type: Date }
 });
 
 module.exports = mongoose.model('register', registerSchema);

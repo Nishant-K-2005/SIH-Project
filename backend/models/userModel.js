@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 // Define the schema for candidate details
 
 const userSchema = new mongoose.Schema({
+  registerID : {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'registerModel',
+    required: true
+  },
   candidateId: {
     type: String,
     required: true,
