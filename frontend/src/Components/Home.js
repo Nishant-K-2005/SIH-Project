@@ -26,7 +26,6 @@ export default function Home() {
 			
         })
 		const data = JSON.stringify(await response.json())
-		userdata = data
 		const errordata = data.substring(12,30)
 		if(errordata == 'Invalid credential'){
 			alert('Invalid credential');
