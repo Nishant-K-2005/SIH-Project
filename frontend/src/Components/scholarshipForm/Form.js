@@ -3,6 +3,8 @@ import "./Form.css";
 import React, { useState } from "react";
 import MultiStepProgressBar from "../MultiStepProgressBar/MultiStepProgressBar";
 import PersonalDetails from "../PersonalDetails";
+import FamilyDetail from "../FamilyDetails";
+import ContactDetails from "../ContactDetails";
 
 function Form() {
     const [page, setPage] = useState("pageone");
@@ -36,8 +38,8 @@ function Form() {
             {
                 {
                     pageone: <PersonalDetails onButtonClick={nextPage} />,
-                    // pagetwo: <PageTwo onButtonClick={nextPage} />,
-                    // pagethree: <PageThree onButtonClick={nextPage} />,
+                    pagetwo: <FamilyDetail onButtonClick={nextPage} />,
+                    pagethree: <ContactDetails onButtonClick={nextPage} />,
                     // pagefour: <PageFour />,
                 }[page]
             }
