@@ -3,6 +3,7 @@ import { json } from 'react-router-dom';
 import {
     useNavigate
 } from "react-router-dom";
+import Header from './Header';
 
 export default function Register() {
 
@@ -83,7 +84,7 @@ export default function Register() {
             alert("User Alerady exists");
             console.log("User already exists")
         }else{
-            console.log(data)
+            // console.log(data)
             N('/User') 
         }
     }
@@ -93,6 +94,7 @@ export default function Register() {
 
     return (
         <>
+            <Header/>
             <form onSubmit={RegisterUser} className='flex flex-col w-3/4 m-auto mb-5 md:w-1/3'>
 
                 {/* 12th Roll Number */}

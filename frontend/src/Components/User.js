@@ -1,8 +1,14 @@
 import React from 'react'
-const { data } = require('./Home.js')
+import UserNavigation from './UserNavigation'
+import Form from './scholarshipForm/Form'
+import { useLocation } from 'react-router-dom'
 export default function User() {
-    console.log(data)
+    const location = useLocation()
+    const Userdata = location.state.user
     return (
-        <div>{data}</div>
+        <>
+        <UserNavigation/>
+        <Form/>
+        </>
     )
 }
