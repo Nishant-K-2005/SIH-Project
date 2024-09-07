@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import React, { useState } from 'react'
 import homebg from '../images/bg-img1.jpg'
+import Header from './Header'
 
 export default function Home() {
 	const [email, setemail] = useState('');
@@ -25,12 +26,13 @@ export default function Home() {
             })
 			
         })
-		const data = JSON.stringify(await response.json())
-		const errordata = data.substring(12,30)
+		const data = await response.json()
+		const errordata = JSON.stringify(data).substring(12,30)
 		if(errordata == 'Invalid credential'){
 			alert('Invalid credential');
 		}else{
-			N('/User')
+			console.log(data.user.rollno)
+			N('/User', {state:data})
 			
 		}
 	}
@@ -38,6 +40,7 @@ export default function Home() {
 
 	return (
 		<>
+			<Header/>
 			<div className='realtive'>
 
 				<div className='w-full h-1/4 absolute'>
