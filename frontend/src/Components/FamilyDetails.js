@@ -36,9 +36,9 @@ export default function FamilyDetails({ onButtonClick }) {
 
     return (
         <div className='bg-slate-100 flex justify-center items-center w-full'>
-            <form className='flex-col justify-center items-center md:gap-10 mt-10 md:px-28 pb-28 w-full h-full'>
+            <form className='flex-col justify-center items-center md:gap-10 m-auto mt-5 mb-5 md:px-28 pb-28 w-full h-full'>
 
-                <h1 className='md:mb-7 md:text-4xl text-2xl border-b-4 border-black md:py-5 py-2'> Family & Income Details</h1>
+                <span className='md:mb-7 px-10 md:text-4xl text-2xl border-b-4 border-black md:py-5 py-2'> Family & Income Details</span>
 
                 <div className='flex-col mt-10 gap-0'>
 
