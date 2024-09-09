@@ -44,9 +44,9 @@ export default function FamilyDetails({ onButtonClick }) {
 
                     {/* Father Details */}
 
-                    <div className='fatherdet sm-flex-col gap-0 md:flex md:gap-8 justify-center items-center'>
+                    <h2 className='text-xl font-semibold ml-30'>Father's Details </h2>
+                    <div className='fatherdet flex flex-col-reverse md:flex md:flex-row md:gap-8 mt-4 justify-center items-center'>
                         <div>
-                            <h2 className='text-xl font-semibold ml-30'>Father's Details </h2>
                             <input
                                 value={fname}
                                 onChange={(e) => { setfname(e.target.value) }}
@@ -62,7 +62,7 @@ export default function FamilyDetails({ onButtonClick }) {
                         </div>
 
                         <div className='flex justify-center'>
-                            <div className='border-black border-4 h-36 w-36 mt-16 rounded'>
+                            <div className='border-black border-4 h-36 w-36 md:mt-16  rounded'>
                                 <div className='h-full flex justify-center items-center object-cover' onClick={onFatherImageClick}>
                                     {fatherImage ? <img className='h-full w-full' src={URL.createObjectURL(fatherImage)} /> : <img src={AICTE} />}
                                     <input type='file' ref={inputRef1} onChange={onFatherImageChange} style={{ display: "none" }} />
@@ -73,9 +73,9 @@ export default function FamilyDetails({ onButtonClick }) {
 
                     {/* Mother Details */}
 
-                    <div className='motherdet sm-flex-col sm-gap-0  md:flex md:gap-8 mt-6 justify-center items-center'>
+                    <h2 className='text-xl font-semibold ml-30 mt-8'>Mother's Details </h2>
+                    <div className='motherdet flex flex-col-reverse  md:flex md:flex-row md:gap-8 mt-6 justify-center items-center'>
                         <div>
-                            <h2 className='text-xl font-semibold ml-30'>Mother's Details </h2>
                             <input
                                 value={mname}
                                 onChange={(e) => { setmname(e.target.value) }}
@@ -91,7 +91,7 @@ export default function FamilyDetails({ onButtonClick }) {
                         </div>
                         <input className='hidden' type='file'></input>
                         <div className='flex justify-center'>
-                        <div className='border-black border-4 h-36 w-36 mt-16 rounded'>
+                            <div className='border-black border-4 h-36 w-36 md:mt-16 rounded'>
                                 <div className='h-full flex justify-center items-center object-cover' onClick={onMotherImageClick}>
                                     {motherImage ? <img className='h-full w-full' src={URL.createObjectURL(motherImage)} /> : <img src={AICTE} />}
                                     <input type='file' ref={inputRef2} onChange={onMotherImageChange} style={{ display: "none" }} />
