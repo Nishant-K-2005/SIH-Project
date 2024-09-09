@@ -3,16 +3,12 @@ import "./Form.css";
 import React, { useState } from "react";
 import MultiStepProgressBar from "../MultiStepProgressBar/MultiStepProgressBar";
 import PersonalDetails from "../PersonalDetails";
-<<<<<<< HEAD
-import Address from "../address";
-=======
 import FamilyDetail from "../FamilyDetails";
-import ContactDetails from "../ContactDetails";
->>>>>>> 37eb5e0ed698f5529862562bab8103378247e14c
+import Address from "../address";
 
-function Form() {
+function Form(userdata) { 
+
     const [page, setPage] = useState("pageone");
-
     const nextPage = (page) => {
         setPage(page);
     };
@@ -23,7 +19,7 @@ function Form() {
                 setPage("pageone");
                 break;
             case "2":
-                setPage("pagetwo");
+                setPage("pagetwo"); 
                 break;
             case "3":
                 setPage("pagethree");
@@ -44,14 +40,9 @@ function Form() {
             <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
             {
                 {
-                    pageone: <PersonalDetails onButtonClick={nextPage} />,
-<<<<<<< HEAD
-                    pagetwo: <Address onButtonClick={nextPage} />,
-                    // pagethree: <PageThree onButtonClick={nextPage} />,
-=======
+                    pageone: <PersonalDetails Details={userdata.userdata} onButtonClick={nextPage} />,
                     pagetwo: <FamilyDetail onButtonClick={nextPage} />,
-                    pagethree: <ContactDetails onButtonClick={nextPage} />,
->>>>>>> 37eb5e0ed698f5529862562bab8103378247e14c
+                    pagethree: <Address onButtonClick={nextPage} />,
                     // pagefour: <PageFour />,
                 }[page]
             }
