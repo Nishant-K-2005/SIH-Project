@@ -3,6 +3,7 @@ import "./Form.css";
 import React, { useState } from "react";
 import MultiStepProgressBar from "../MultiStepProgressBar/MultiStepProgressBar";
 import PersonalDetails from "../PersonalDetails";
+import Address from "../address";
 
 function Form() {
     const [page, setPage] = useState("pageone");
@@ -23,10 +24,13 @@ function Form() {
                 setPage("pagethree");
                 break;
             case "4":
+                setPage("pagefour");
+                break;
+            case "5":
                 alert("Ooops! Seems like you did not fill the form.");
                 break;
             default:
-                setPage("1");
+                setPage("pageone");
         }
     };
 
@@ -36,7 +40,7 @@ function Form() {
             {
                 {
                     pageone: <PersonalDetails onButtonClick={nextPage} />,
-                    // pagetwo: <PageTwo onButtonClick={nextPage} />,
+                    pagetwo: <Address onButtonClick={nextPage} />,
                     // pagethree: <PageThree onButtonClick={nextPage} />,
                     // pagefour: <PageFour />,
                 }[page]

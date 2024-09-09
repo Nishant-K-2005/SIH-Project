@@ -5,12 +5,14 @@ import { ProgressBar, Step } from "react-step-progress-bar";
 const MultiStepProgressBar = ({ page, onPageNumberClick }) => {
     var stepPercentage = 0;
     if (page === "pageone") {
-        stepPercentage = 16;
+        stepPercentage = 13;
     } else if (page === "pagetwo") {
-        stepPercentage = 49.5;
+        stepPercentage = 38;
     } else if (page === "pagethree") {
-        stepPercentage = 82.5;
+        stepPercentage = 63;
     } else if (page === "pagefour") {
+        stepPercentage = 88;
+    } else if (page === "pagefive") {
         stepPercentage = 100;
     } else {
         stepPercentage = 0;
@@ -54,6 +56,16 @@ const MultiStepProgressBar = ({ page, onPageNumberClick }) => {
                         <div
                             className={`indexedStep ${accomplished ? "accomplished" : null}`}
                             onClick={() => onPageNumberClick("4")}
+                        >
+                            {index + 1}
+                        </div>
+                    )}
+                </Step>
+                <Step>
+                    {({ accomplished, index }) => (
+                        <div
+                            className={`indexedStep ${accomplished ? "accomplished" : null}`}
+                            onClick={() => onPageNumberClick("5")}
                         >
                             {index + 1}
                         </div>
