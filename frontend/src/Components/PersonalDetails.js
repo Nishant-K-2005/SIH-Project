@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import Logo from "../images/AICTE-logo.png"
 export default function PersonalDetails({ onButtonClick }) {
     const [name_, setName] = useState('');
     const [photo, setphoto] = useState();
@@ -58,9 +59,9 @@ export default function PersonalDetails({ onButtonClick }) {
                         className='hidden '
                         required>
                     </input>
-                    <div onClick={onImgClick} className='border border-solid border-black w-24 h-24 md:w-32 md:h-32 mx-auto mt-5 p-2 rounded-lg'>
-                        {photo ? <img
-                            src={URL.createObjectURL(photo)} required /> : <img src='' alt='None' />}
+                    <div onClick={onImgClick} className='border-4 border-solid border-black w-24 h-24 md:w-36 md:h-32 mx-auto mt-5 rounded'>
+                        {photo ? <img className='h-full'
+                            src={URL.createObjectURL(photo)} required /> : <img src={Logo} alt='None' className='h-full' />}
                     </div>
                 </div>
 
