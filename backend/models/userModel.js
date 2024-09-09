@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  userImage: {
+    type: String,
+    required: true
+  },
   gender: {
     type: String,
     required: true
@@ -40,6 +44,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  familyDetails: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'familyModel'
+  },
+  contactDetails: { 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'contactModel'
   }
 });
 

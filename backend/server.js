@@ -9,16 +9,19 @@ const familyInfo = require('./models/familyModel');
 const addressInfo = require('./models/contactModel');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const upload = require("./config/multerconfig");
 const { generateCandidateID } = require("./config/candidateRand");
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
@@ -118,11 +121,11 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.post('/user', isLoggedIn, async (req, res) => {
+app.post('/user', isLoggedIn,upload.single("image"), async (req, res) => {
 
     const user = await User.findOne({ email: req.user.email });
 
-    const { name, gender, dateOfBirth, casteCategory, subCasteCategory, physicalDisablitiy, aadharDetails } = req.body;
+    const { name,gender, dateOfBirth, casteCategory, subCasteCategory, physicalDisablitiy, aadharDetails } = req.body;
 
     try {
         let userDeatails = await userInfo.create({
@@ -135,15 +138,17 @@ app.post('/user', isLoggedIn, async (req, res) => {
             casteCategory,
             subCasteCategory,
             physicalDisablitiy,
-            aadharDetails: user.aadharcard
+            aadharDetails: user.aadharcard || aadharDetails
         });
+        user.userImage = req.file.filename;
+        await user.save();
         res.status(201).json({ message: "User Details saved", user: userDeatails });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-app.post('/user/familyInfo', isLoggedIn, async (req, res) => {
+app.post('/user/familyInfo', isLoggedIn, upload.single('image'), async (req, res) => {
     let user = await User.findOne({ email: req.user.email });
     const { fatherName, fatherOccupation, fatherDesignation, motherName, motherOccupation, motherDesignation, familyAnnualIncome } = req.body;
 
@@ -158,6 +163,11 @@ app.post('/user/familyInfo', isLoggedIn, async (req, res) => {
             motherDesignation,
             familyAnnualIncome
         });
+        user.familyInfo.push(family._id);
+        family.fImage = req.file.filename;
+        family.mImage = req.file.filename;
+        await family.save();
+        await user.save();
         res.status(201).json({ message: "Family Information saved", family: family });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -211,6 +221,9 @@ app.post('/user/addressInfo', isLoggedIn, async function (req, res) {
                 c_city,
                 c_pinCode
         });
+        user.contactDetails.push(address._id);
+        await user.save();
+
         res.status(201).json({ message: "Address Information saved", address: address });
     } catch (error) {
         res.status(500).json({ message: error.message});
