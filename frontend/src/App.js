@@ -7,6 +7,7 @@ import {
 import Home from "./Components/Home";
 import Register from "./Components/Register";
 import User from "./Components/User";
+import FamilyDetails from "./Components/FamilyDetails";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/Register" element={<Register />} />
                     <Route path="/User" element={<User/>}/>
+                    <Route path="/familyIncome" element={<FamilyDetails/>} />
                 </Routes>
             </Router>
         </>
