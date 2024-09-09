@@ -6,9 +6,9 @@ import PersonalDetails from "../PersonalDetails";
 import FamilyDetail from "../FamilyDetails";
 import Address from "../address";
 
-function Form() {
-    const [page, setPage] = useState("pageone");
+function Form(userdata) { 
 
+    const [page, setPage] = useState("pageone");
     const nextPage = (page) => {
         setPage(page);
     };
@@ -19,7 +19,7 @@ function Form() {
                 setPage("pageone");
                 break;
             case "2":
-                setPage("pagetwo");
+                setPage("pagetwo"); 
                 break;
             case "3":
                 setPage("pagethree");
@@ -40,7 +40,7 @@ function Form() {
             <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
             {
                 {
-                    pageone: <PersonalDetails onButtonClick={nextPage} />,
+                    pageone: <PersonalDetails Details={userdata.userdata} onButtonClick={nextPage} />,
                     pagetwo: <FamilyDetail onButtonClick={nextPage} />,
                     pagethree: <Address onButtonClick={nextPage} />,
                     // pagefour: <PageFour />,
